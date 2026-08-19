@@ -170,8 +170,18 @@ SECTIONS.forEach((section) => {
     const img = document.createElement('img');
     img.loading = 'lazy';
     img.decoding = 'async';
-    img.src = thumb(id, 800);
     img.alt = section.title;
+
+    const markImageLoaded = () => img.classList.add('is-loaded');
+    const markImageError = () => img.classList.add('is-loaded', 'is-error');
+    img.addEventListener('load', markImageLoaded, { once:true });
+    img.addEventListener('error', markImageError, { once:true });
+    img.src = thumb(id, 800);
+    if (img.complete) {
+      if (img.naturalWidth > 0) markImageLoaded();
+      else markImageError();
+    }
+
     fig.appendChild(img);
     grid.appendChild(fig);
   });
@@ -257,22 +267,61 @@ const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxCounter = document.getElementById('lightbox-counter');
 let currentIndex = 0;
+let imageRequestId = 0;
+let imageSwapTimer;
+let lightboxCloseTimer;
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-function showImage(index){
+function showImage(index, opening = false){
   currentIndex = (index + allImages.length) % allImages.length;
   const item = allImages[currentIndex];
-  lightboxImg.src = thumb(item.id, 2000);
-  lightboxImg.alt = item.alt;
-  lightboxCounter.textContent = `${currentIndex + 1} / ${allImages.length}`;
+  const requestId = ++imageRequestId;
+
+  clearTimeout(imageSwapTimer);
+  lightboxImg.classList.remove('is-visible');
+
+  const swapImage = () => {
+    if (requestId !== imageRequestId || !lightbox.classList.contains('open')) return;
+
+    const revealImage = () => {
+      if (requestId !== imageRequestId || lightboxImg.naturalWidth === 0) return;
+      lightboxImg.classList.add('is-visible');
+    };
+
+    lightboxImg.onload = revealImage;
+    lightboxImg.onerror = () => {
+      if (requestId === imageRequestId) lightboxImg.classList.remove('is-visible');
+    };
+    lightboxImg.src = thumb(item.id, 2000);
+    lightboxImg.alt = item.alt;
+    lightboxCounter.textContent = `${currentIndex + 1} / ${allImages.length}`;
+
+    if (lightboxImg.complete) revealImage();
+  };
+
+  const fadeOutDuration = reducedMotionQuery.matches || opening ? 0 : 90;
+  imageSwapTimer = setTimeout(swapImage, fadeOutDuration);
 }
 
 function openLightbox(index){
-  showImage(index);
+  clearTimeout(lightboxCloseTimer);
   lightbox.classList.add('open');
+  showImage(index, true);
 }
 function closeLightbox(){
+  if (!lightbox.classList.contains('open')) return;
+  ++imageRequestId;
+  clearTimeout(imageSwapTimer);
+  lightboxImg.classList.remove('is-visible');
   lightbox.classList.remove('open');
-  lightboxImg.src = '';
+  clearTimeout(lightboxCloseTimer);
+  const closeDuration = reducedMotionQuery.matches ? 0 : 220;
+  lightboxCloseTimer = setTimeout(() => {
+    if (lightbox.classList.contains('open')) return;
+    lightboxImg.onload = null;
+    lightboxImg.onerror = null;
+    lightboxImg.src = '';
+  }, closeDuration);
 }
 
 document.querySelectorAll('.grid figure').forEach(fig => {
