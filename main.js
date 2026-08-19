@@ -127,7 +127,7 @@ function finishLoader(){
 }
 
 requestAnimationFrame(animateLoader);
-heroImg.src = thumb(HERO_ID, 2400);
+heroImg.src = thumb(HERO_ID, 2000);
 
 const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
 const minimumIntro = new Promise(resolve => setTimeout(resolve, 900));
@@ -169,7 +169,8 @@ SECTIONS.forEach((section) => {
 
     const img = document.createElement('img');
     img.loading = 'lazy';
-    img.src = thumb(id, 1200);
+    img.decoding = 'async';
+    img.src = thumb(id, 800);
     img.alt = section.title;
     fig.appendChild(img);
     grid.appendChild(fig);
