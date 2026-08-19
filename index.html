@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
 <title>Tracy & Alexis — Galerie du mariage</title>
 <meta name="description" content="Galerie photo du mariage de Tracy & Alexis, par Chriscam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +13,17 @@
 </head>
 <body>
 
+<div class="page-loader" id="page-loader" role="status" aria-live="polite" aria-label="Chargement de la galerie">
+  <div class="loader-inner">
+    <p class="loader-kicker">08 · 08 · 2026</p>
+    <div class="loader-monogram" aria-hidden="true">
+      <span>T</span><i></i><span>A</span>
+    </div>
+    <div class="loader-track" aria-hidden="true"><span id="loader-bar"></span></div>
+    <span class="loader-progress" id="loader-progress">0%</span>
+  </div>
+</div>
+
 <div class="grain"></div>
 <nav class="side-nav" id="side-nav"></nav>
 
@@ -20,7 +32,7 @@
   <div class="hero-content">
     <p class="eyebrow">Galerie du mariage</p>
     <h1>Tracy <span class="amp">&amp;</span> Alexis</h1>
-    <p class="hero-date">17 Août 2026</p>
+    <p class="hero-date">8 Août 2026</p>
   </div>
 </section>
 <div class="scroll-cue">
