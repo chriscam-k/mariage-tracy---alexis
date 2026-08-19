@@ -335,7 +335,44 @@ document.querySelectorAll('.grid figure').forEach(fig => {
 document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
 document.getElementById('lightbox-prev').addEventListener('click', () => showImage(currentIndex - 1));
 document.getElementById('lightbox-next').addEventListener('click', () => showImage(currentIndex + 1));
-lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+let touchStartX = null;
+let touchStartY = null;
+let lastSwipeAt = 0;
+const swipeThreshold = 50;
+
+lightbox.addEventListener('touchstart', e => {
+  if (!lightbox.classList.contains('open') || e.touches.length !== 1 || e.target.closest('button')) {
+    touchStartX = null;
+    touchStartY = null;
+    return;
+  }
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive:true });
+
+lightbox.addEventListener('touchend', e => {
+  if (touchStartX === null || touchStartY === null || e.changedTouches.length !== 1) return;
+
+  const deltaX = e.changedTouches[0].clientX - touchStartX;
+  const deltaY = e.changedTouches[0].clientY - touchStartY;
+  touchStartX = null;
+  touchStartY = null;
+
+  if (Math.abs(deltaX) < swipeThreshold || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+  lastSwipeAt = Date.now();
+  showImage(deltaX < 0 ? currentIndex + 1 : currentIndex - 1);
+}, { passive:true });
+
+lightbox.addEventListener('touchcancel', () => {
+  touchStartX = null;
+  touchStartY = null;
+}, { passive:true });
+
+lightbox.addEventListener('click', e => {
+  const followsSwipe = Date.now() - lastSwipeAt < 400;
+  if (e.target === lightbox && !followsSwipe) closeLightbox();
+});
 
 document.addEventListener('keydown', e => {
   if (!lightbox.classList.contains('open')) return;

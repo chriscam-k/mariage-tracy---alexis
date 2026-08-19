@@ -524,6 +524,7 @@ footer a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;
   opacity:0;
   visibility:hidden;
   pointer-events:none;
+  touch-action:pan-y;
   transition:opacity .22s ease, visibility 0s linear .22s;
 }
 .lightbox.open{
