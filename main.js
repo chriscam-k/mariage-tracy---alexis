@@ -208,21 +208,40 @@ const sectionEls = [
   ...SECTIONS.map(s => document.getElementById(s.id)),
   document.getElementById('remerciements')
 ];
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const link = sideNav.querySelector(`a[href="#${entry.target.id}"]`);
-    if (!link) return;
-    if (entry.isIntersecting) {
-      navLinks.forEach(l => {
-        l.classList.remove('active');
-        l.removeAttribute('aria-current');
-      });
-      link.classList.add('active');
-      link.setAttribute('aria-current', 'true');
-    }
+
+function clearActiveNav(){
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    link.removeAttribute('aria-current');
   });
-}, { threshold: 0.4 });
+}
+
+function updateActiveNav(){
+  const viewportCenter = window.innerHeight / 2;
+  const activeSection = sectionEls.find(section => {
+    const rect = section.getBoundingClientRect();
+    return rect.top <= viewportCenter && rect.bottom > viewportCenter;
+  });
+
+  if (!activeSection) {
+    clearActiveNav();
+    return;
+  }
+  const activeLink = sideNav.querySelector(`a[href="#${activeSection.id}"]`);
+  if (!activeLink || activeLink.classList.contains('active')) return;
+
+  clearActiveNav();
+  activeLink.classList.add('active');
+  activeLink.setAttribute('aria-current', 'true');
+}
+
+const navObserver = new IntersectionObserver(updateActiveNav, {
+  rootMargin: '-49% 0px -49% 0px',
+  threshold: 0
+});
 sectionEls.forEach(el => navObserver.observe(el));
+window.addEventListener('resize', updateActiveNav);
+updateActiveNav();
 
 // Keep the contextual navigation out of the hero, then reveal it near its end.
 const hero = document.querySelector('.hero');
