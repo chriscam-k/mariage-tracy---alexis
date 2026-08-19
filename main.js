@@ -10,7 +10,7 @@ const SECTIONS = [
     id: 'preparatifs',
     eyebrow: 'Matin',
     title: 'Les préparatifs',
-    desc: "Le calme avant l'essentiel — coiffure, robe, les derniers ajustements à la maison.",
+    desc: "Avant que tout commence.",
     ids: [
       '1IPRUNiMNyI-8qC8bt44uecgvVTEdoBAZ',
       '1n-wgGshRZwDVo2YUmBY-1jd3SHE8dQr8',
@@ -57,6 +57,14 @@ const SECTIONS = [
       '1mx8o9Dkm7oxBjf-2y25HuWRO9bhMQjZw',
       '1TiEGmYKh4dFO_GPhF6h4WKYLe5BHLrLY'
     ]
+  },
+  {
+    id: 'couple',
+    eyebrow: 'À deux',
+    title: 'Le couple',
+    desc: 'Le temps suspendu, juste pour eux.',
+    // Ajoutez ici les IDs Google Drive des photos du couple.
+    ids: []
   },
   {
     id: 'foret',
@@ -132,14 +140,7 @@ const main = document.getElementById('main');
 const sideNav = document.getElementById('side-nav');
 const allImages = []; // {id, alt}
 
-SECTIONS.forEach((section, sIndex) => {
-  if (sIndex > 0) {
-    const div = document.createElement('div');
-    div.className = 'divider';
-    div.innerHTML = `<svg viewBox="0 0 120 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 17C30 8 45 26 60 17C75 8 90 26 118 17" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
-    main.appendChild(div);
-  }
-
+SECTIONS.forEach((section) => {
   const section_el = document.createElement('section');
   section_el.className = 'moment';
   section_el.id = section.id;
@@ -150,7 +151,7 @@ SECTIONS.forEach((section, sIndex) => {
     <p class="eyebrow">${section.eyebrow}</p>
     <h2>${section.title}</h2>
     <p>${section.desc}</p>
-    <span class="moment-count">${section.ids.length} photos</span>
+    <span class="moment-count">${section.ids.length ? `${section.ids.length} photos` : 'Photos à venir'}</span>
   `;
   section_el.appendChild(head);
 
@@ -184,6 +185,11 @@ SECTIONS.forEach((section, sIndex) => {
   sideNav.appendChild(a);
 });
 
+const thanksLink = document.createElement('a');
+thanksLink.href = '#remerciements';
+thanksLink.innerHTML = '<span class="dot"></span><span class="label">Remerciements &amp; liens</span>';
+sideNav.appendChild(thanksLink);
+
 // ---------- Scroll reveal ----------
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -198,18 +204,33 @@ document.querySelectorAll('.grid figure').forEach(fig => revealObserver.observe(
 
 // ---------- Side nav active state ----------
 const navLinks = Array.from(sideNav.querySelectorAll('a'));
-const sectionEls = SECTIONS.map(s => document.getElementById(s.id));
+const sectionEls = [
+  ...SECTIONS.map(s => document.getElementById(s.id)),
+  document.getElementById('remerciements')
+];
 const navObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     const link = sideNav.querySelector(`a[href="#${entry.target.id}"]`);
     if (!link) return;
     if (entry.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
+      navLinks.forEach(l => {
+        l.classList.remove('active');
+        l.removeAttribute('aria-current');
+      });
       link.classList.add('active');
+      link.setAttribute('aria-current', 'true');
     }
   });
 }, { threshold: 0.4 });
 sectionEls.forEach(el => navObserver.observe(el));
+
+// Keep the contextual navigation out of the hero, then reveal it near its end.
+const hero = document.querySelector('.hero');
+const heroObserver = new IntersectionObserver(([entry]) => {
+  const heroMostlyLeft = entry.boundingClientRect.top < 0 && entry.intersectionRatio < 0.12;
+  sideNav.classList.toggle('is-visible', heroMostlyLeft);
+}, { threshold: [0, 0.12] });
+heroObserver.observe(hero);
 
 // ---------- Lightbox ----------
 const lightbox = document.getElementById('lightbox');
