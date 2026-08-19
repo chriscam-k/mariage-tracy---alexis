@@ -83,8 +83,49 @@ const SPAN_PATTERN = ['g-a','g-c','g-d','g-b','g-h','g-e','g-c','g-i','g-f','g-g
 
 function thumb(id, w){ return `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`; }
 
-// ---------- Build hero ----------
-document.getElementById('hero-img').src = thumb(HERO_ID, 2400);
+// ---------- Smooth page loader + hero ----------
+const loaderStartedAt = performance.now();
+const loaderBar = document.getElementById('loader-bar');
+const loaderProgress = document.getElementById('loader-progress');
+const heroImg = document.getElementById('hero-img');
+let displayedProgress = 0;
+let loaderFinished = false;
+
+function animateLoader(now){
+  if (loaderFinished) return;
+  const elapsed = now - loaderStartedAt;
+  // The progress stays fluid, then waits for the real critical assets at 92%.
+  displayedProgress = Math.min(92, 100 * (1 - Math.exp(-elapsed / 1050)));
+  loaderBar.style.transform = `scaleX(${displayedProgress / 100})`;
+  loaderProgress.textContent = `${Math.round(displayedProgress)}%`;
+  requestAnimationFrame(animateLoader);
+}
+
+function assetReady(element){
+  if (element.complete) return Promise.resolve();
+  return new Promise(resolve => {
+    element.addEventListener('load', resolve, { once:true });
+    element.addEventListener('error', resolve, { once:true });
+  });
+}
+
+function finishLoader(){
+  if (loaderFinished) return;
+  loaderFinished = true;
+  loaderBar.style.transition = 'transform .38s cubic-bezier(.2,.7,.2,1)';
+  loaderBar.style.transform = 'scaleX(1)';
+  loaderProgress.textContent = '100%';
+  setTimeout(() => document.body.classList.add('page-ready'), 280);
+}
+
+requestAnimationFrame(animateLoader);
+heroImg.src = thumb(HERO_ID, 2400);
+
+const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+const minimumIntro = new Promise(resolve => setTimeout(resolve, 900));
+const criticalAssets = Promise.all([assetReady(heroImg), fontsReady, minimumIntro]);
+const safetyTimeout = new Promise(resolve => setTimeout(resolve, 4500));
+Promise.race([criticalAssets, safetyTimeout]).then(finishLoader);
 
 // ---------- Build sections + flat list for lightbox ----------
 const main = document.getElementById('main');
