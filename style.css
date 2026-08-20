@@ -12,13 +12,17 @@
   --max: 1180px;
 }
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{
+  scroll-behavior:smooth;
+  overflow-x:clip;
+}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
   *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
 }
 body{
   margin:0;
+  overflow-x:clip;
   background:var(--paper);
   color:var(--ink);
   font-family:'Libre Franklin', sans-serif;
@@ -311,16 +315,6 @@ img{max-width:100%; display:block;}
   padding-top:72px;
   padding-bottom:104px;
   color:#F4E5DA;
-}
-#preparatifs::before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  top:0;
-  bottom:0;
-  left:50%;
-  width:100vw;
-  transform:translateX(-50%);
   background:#1B1116;
 }
 #preparatifs .moment-head{margin-bottom:54px;}
@@ -349,16 +343,6 @@ img{max-width:100%; display:block;}
   z-index:0;
   padding-top:72px;
   padding-bottom:100px;
-}
-#salle::before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  top:0;
-  bottom:0;
-  left:50%;
-  width:100vw;
-  transform:translateX(-50%);
   background:
     radial-gradient(circle at 16% 14%, rgba(235,203,139,.34), transparent 34%),
     linear-gradient(145deg, #F5EBDD 0%, #F1E0C4 52%, #F5EBDD 100%);
@@ -377,20 +361,12 @@ img{max-width:100%; display:block;}
   padding-top:72px;
   padding-bottom:100px;
 }
-#ceremonie::before,
-#couple::before,
-#foret::before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  inset:0 auto 0 50%;
-  width:100vw;
-  transform:translateX(-50%);
-}
 
 /* A restrained, solemn chapter around the ceremony. */
-#ceremonie{color:#F5EBDD;}
-#ceremonie::before{background:linear-gradient(145deg,#171B22 0%,#201B1A 100%);}
+#ceremonie{
+  color:#F5EBDD;
+  background:linear-gradient(145deg,#171B22 0%,#201B1A 100%);
+}
 #ceremonie .moment-head .eyebrow{color:#CDB27F;}
 #ceremonie .moment-head p{color:#C9BFB3;}
 #ceremonie .moment-count{color:#EBCB8B;}
@@ -398,8 +374,8 @@ img{max-width:100%; display:block;}
 #ceremonie .grid figure:focus-visible{outline-color:var(--gold-light);}
 
 /* Ready for the future couple portrait selection. */
-#couple{color:var(--ink);}
-#couple::before{
+#couple{
+  color:var(--ink);
   background:
     radial-gradient(circle at 82% 16%,rgba(217,91,69,.12),transparent 32%),
     linear-gradient(145deg,#F5EBDD 0%,#EEDFD3 100%);
@@ -424,8 +400,10 @@ img{max-width:100%; display:block;}
 }
 
 /* The final chapter returns to a muted, natural forest palette. */
-#foret{color:#F1EBDD;}
-#foret::before{background:linear-gradient(145deg,#17221B 0%,#263328 56%,#1D2921 100%);}
+#foret{
+  color:#F1EBDD;
+  background:linear-gradient(145deg,#17221B 0%,#263328 56%,#1D2921 100%);
+}
 #foret .moment-head .eyebrow{color:#A9B49D;}
 #foret .moment-head p{color:#C8D0C1;}
 #foret .moment-count{color:#B7C0AA;}

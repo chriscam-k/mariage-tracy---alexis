@@ -145,6 +145,9 @@ SECTIONS.forEach((section) => {
   section_el.className = 'moment';
   section_el.id = section.id;
 
+  const section_inner = document.createElement('div');
+  section_inner.className = 'wrap';
+
   const head = document.createElement('div');
   head.className = 'moment-head';
   head.innerHTML = `
@@ -153,7 +156,7 @@ SECTIONS.forEach((section) => {
     <p>${section.desc}</p>
     <span class="moment-count">${section.ids.length ? `${section.ids.length} photos` : 'Photos à venir'}</span>
   `;
-  section_el.appendChild(head);
+  section_inner.appendChild(head);
 
   const grid = document.createElement('div');
   grid.className = 'grid';
@@ -186,7 +189,8 @@ SECTIONS.forEach((section) => {
     grid.appendChild(fig);
   });
 
-  section_el.appendChild(grid);
+  section_inner.appendChild(grid);
+  section_el.appendChild(section_inner);
   main.appendChild(section_el);
 
   // side nav entry
