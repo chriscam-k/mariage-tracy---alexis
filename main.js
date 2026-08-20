@@ -11,18 +11,21 @@ const SECTIONS = [
     layout: 'editorial',
     eyebrow: 'Matin',
     title: 'Les préparatifs',
-    desc: "Avant que tout commence.",
     ids: [
-      '1IPRUNiMNyI-8qC8bt44uecgvVTEdoBAZ',
-      '1n-wgGshRZwDVo2YUmBY-1jd3SHE8dQr8',
-      '1mYqKSyY-Gw7FnUVP7WNndOYU1kurjsfM',
-      '1Y-5QQEDEpg7oq3z7MyI2QPhRrmZrVVPN',
-      '1LPmuFVVEhbsykp2sULO1PCEQdWQ5xNRq',
-      '1PGFkltRaEZSWB-19OBUpHkpXW2kP1EMx',
-      '1G1NWDXxNhi-C6CQc2vXTPJ_vKUc-KvGH',
-      '1iGQyH9DV_RvyH_Zw9jJbZMIjQyE7cvlj',
-      '1-dBBKuPwP5OK3bjXh9J6KZvnpbpGXWP9',
-      '1aJvF_PiJWqeb3AXZARgqIaQTRn3WtJ8I'
+      '1Y-5QQEDEpg7oq3z7MyI2QPhRrmZrVVPN', // _MG_9572.jpg
+      '1PkncfKug1PClu19L6i7QNlXOMHAWlhyo', // _MG_9580.jpg
+      '1K6t1NITQDn_j0squAeoPfa9TYnWHAPiW', // _MG_9587.jpg
+      '1qx0R4QS5mF4GCk5TooRNw-dBywQSYuDL', // _MG_9589.jpg
+      '1n-wgGshRZwDVo2YUmBY-1jd3SHE8dQr8', // _MG_9610.jpg
+      '1yXDFmybQyip52BO2_qxQFnx3FhtF9FUk', // _MG_9618.jpg
+      '1uYxAHllb7_4eIaZQbM_vaLwR-sYhZmUa', // _MG_9624.jpg
+      '1PGFkltRaEZSWB-19OBUpHkpXW2kP1EMx', // _MG_9643.jpg
+      '1eooXv_5lzB1epYIrTgvOzor2szzpjowE'  // _MG_9649.jpg
+    ],
+    mainIds: [
+      '1yXDFmybQyip52BO2_qxQFnx3FhtF9FUk', // _MG_9618.jpg
+      '1uYxAHllb7_4eIaZQbM_vaLwR-sYhZmUa', // _MG_9624.jpg
+      '1eooXv_5lzB1epYIrTgvOzor2szzpjowE'  // _MG_9649.jpg
     ]
   },
   {
@@ -30,14 +33,17 @@ const SECTIONS = [
     layout: 'reportage',
     eyebrow: 'Midi',
     title: 'Devant la salle',
-    desc: "L'arrivée, les premiers sourires, l'attente joyeuse avant la cérémonie.",
     ids: [
-      '1Vwc4rl5U1MNAQ4F-we6u__Pf-jP-7TSy',
-      '1rLQd9Lq-8RNe-cP6InqgEUdFv6Cf6u_t',
-      '112qB3EH0uNuCUnp4vOSr-8VNaweyP4Lw',
-      '1Ak2cRrf55G2pVapRqmxxbJYF9RMnlDPE',
-      '1ohCE7DWTssnOFGE2uYb9tWS5MnOW0oCo',
-      '18ACyrQUmrRq5Ku4QdtHZUY3tBAlpTmth'
+      '1uu-zSQGOErQlCFrOoaDjbOF92IaE6wqJ', // _MG_9847.jpg
+      '16EkEwnxXOnCYOaBbmnDkuTgqlctQthLI', // _MG_9850.jpg
+      '1fkAsyUACqXFDANa07jN0xUOequXwJrKf', // _MG_9859.jpg
+      '19jyqaPx3elQhJ3jUAPkBH7teDjhBvrhp', // _MG_9863.jpg
+      '1c9-xCh1a6D9Sb1SjZttHdGB6dr6Y8Cbv', // _MG_9869.jpg
+      '13UwUN_OiNifyJXbSpDJnYO1FcjPHaT4H'  // _MG_9871.jpg
+    ],
+    mainIds: [
+      '1fkAsyUACqXFDANa07jN0xUOequXwJrKf', // _MG_9859.jpg
+      '19jyqaPx3elQhJ3jUAPkBH7teDjhBvrhp'  // _MG_9863.jpg
     ]
   },
   {
@@ -45,20 +51,46 @@ const SECTIONS = [
     layout: 'reportage',
     eyebrow: 'Après-midi',
     title: 'La cérémonie',
-    desc: "Les vœux, les alliances, l'instant où tout devient officiel.",
     ids: [
-      '1T11_NeKuE_WarEEksLAvuT1n0aVyjWS-',
-      '1A_uwaXQPWRAALLU4-J8uGpQ4Kb8ysqB9',
-      '1WaUzVdffl6vbLp2Hy2kSAXfdRgPA9MBs',
-      '14S6rBxwNoJ80HhvwfHpb9xqVKL-zIn5w',
-      '1G2j41u5r7kW_OdIhfY0OtRHXYCfz7-rk',
-      '1z0UK5sGsGRzgtwbUYHscD6Xos5ejJj67',
-      '1K133aXTc-HPMLGCaxfTCpG1jxbYz8rNX',
-      '1eXCV0WmOl0dflI5kmUEG42K6ChNMPZnw',
-      '1g8f6mC_h4I1hCQvL1kbksuWfHwOw6aQ8',
-      '1S6dOGlXxXLD8yRVDYNmVgin0lqhDI3Oz',
-      '1mx8o9Dkm7oxBjf-2y25HuWRO9bhMQjZw',
-      '1TiEGmYKh4dFO_GPhF6h4WKYLe5BHLrLY'
+      '1mEOkdXVlxWLtiXgk8f3BTHhrQQrE1_dc', // _MG_0014.jpg
+      '1NxBFV4eC9JftZwMUTkRIOu358brKMe8c', // _MG_0024.jpg
+      '1XzZ7QELHXtBUnutr1VcRlL7D78it6Wio', // _MG_0051.jpg
+      '1DHSD9cjloelyrl_9hOs_8o-Ywt7fsA-h', // _MG_0056.jpg
+      '1yzOc_kzW2E6eXDET7ki6JL6aXpj5nDQM', // _MG_0091.jpg
+      '1qlDHQEUheQoH4_h46iPNq4r5bohv2qIA', // _MG_0108.jpg
+      '1js9DBuJ9xoIyZbvHBUPQdVxKYBsoUMgz', // _MG_0115.jpg
+      '1KkUieL8865fGIDCj08whA-AOR7Sb-XVe', // _MG_0126.jpg
+      '1EgXqScMA9vLJN50K3FMXxWRZaD5-2V3w', // _MG_0139.jpg
+      '19Q0xL0BAdP3LMcy0g1bF-YqeISsqRUdL', // _MG_0191.jpg
+      '1G0oPI2BqC5a8qGN841kSY2hOjDH6oTJK', // _MG_0195.jpg
+      '1H1OF53ueq5j-WTEaFDoloriB5kjMJCO9', // _MG_0198.jpg
+      '1p2SsdH3BDJhTgQDIdLt7loaS5drV9MVc', // _MG_0273.jpg
+      '1IrdKhV_rmFtuLEaCt-JFVHncPYqNUwWX', // _MG_0285-2.jpg
+      '1e-lgpBDL4M3TFsoh5pc65J4izw2zi0ol', // _MG_0301.jpg
+      '1JJE0Gz3QlMUDfVym8ioZZkAWtmhRtIY8', // _MG_0306.jpg
+      '1nQEPZwP0xbV0uZCY5hkyhIaRbUrb362j', // _MG_9677.jpg
+      '1rY5ET41Q_YyDNaDFrKtIYYBaYAodkiaD', // _MG_9691.jpg
+      '1bybByXedBZxrKC4aejtlZJsVCUZWXzdJ', // _MG_9711.jpg
+      '1l5BxowgwvMJWvFzaYo4YJQE9CbAw-me1', // _MG_9720.jpg
+      '13Pdenfn-uVq1WnaKhRp8vhlkHrtZDC6X', // _MG_9734.jpg
+      '1vqj6B0ipv9Q7YFglh7S1AFGr8nukqx_6', // _MG_9736.jpg
+      '1g8f6mC_h4I1hCQvL1kbksuWfHwOw6aQ8', // _MG_9745.jpg
+      '1FBoOP_NyvTeb9K9pDwCqUU0tXcG0XJjx', // _MG_9784.jpg
+      '1TiEGmYKh4dFO_GPhF6h4WKYLe5BHLrLY', // _MG_9792.jpg
+      '1wuXtaStohv1iwUm2A1068k6B1T1Ha7_T', // _MG_9800.jpg
+      '1moxVrPIiWrYqcGlTxw81QlZGfrSI7mFm'  // _MG_9873.jpg
+    ],
+    mainIds: [
+      '1DHSD9cjloelyrl_9hOs_8o-Ywt7fsA-h', // _MG_0056.jpg
+      '1EgXqScMA9vLJN50K3FMXxWRZaD5-2V3w', // _MG_0139.jpg
+      '19Q0xL0BAdP3LMcy0g1bF-YqeISsqRUdL', // _MG_0191.jpg
+      '1G0oPI2BqC5a8qGN841kSY2hOjDH6oTJK', // _MG_0195.jpg
+      '1H1OF53ueq5j-WTEaFDoloriB5kjMJCO9', // _MG_0198.jpg
+      '1wuXtaStohv1iwUm2A1068k6B1T1Ha7_T'  // _MG_9800.jpg
+    ],
+    mobileMainIds: [
+      '1l5BxowgwvMJWvFzaYo4YJQE9CbAw-me1', // _MG_9720.jpg
+      '1TiEGmYKh4dFO_GPhF6h4WKYLe5BHLrLY'  // _MG_9792.jpg
     ]
   },
   {
@@ -66,27 +98,50 @@ const SECTIONS = [
     layout: 'cinematic',
     eyebrow: 'À deux',
     title: 'Le couple',
-    desc: 'Le temps suspendu, juste pour eux.',
-    // Ajoutez ici les IDs Google Drive des photos du couple.
-    ids: []
+    ids: [
+      '1dut3WzXKEJx9QQNlttTnx3tJmeWeGFo-', // _MG_0205.jpg
+      '1wQqE09H8g5DHX2K4rFpEnCF7bo33yaN9', // _MG_0208.jpg
+      '1aT4xGx2XpneQFJB50ONm9dqm62VeigGv', // _MG_0211.jpg
+      '12rNV1Ww65_Kq_auK2o0_X4u0WJgADq_4', // _MG_0214-2.jpg
+      '1bLJCutfRWsvWHefyjyt-7zrnLgpRTbPs', // _MG_0265.jpg
+      '1v9nNTfFuigcsXtnLc2VHSQITvLH950ig', // _MG_0276.jpg
+      '1LJhfS0ZLCnYa6JhuRa38lKTaU114FlBy', // _MG_0311.jpg
+      '1XhQemQRFDvkmun52yNNYWTItEICXUcTr'  // _MG_9840.jpg
+    ],
+    mainIds: [
+      '1dut3WzXKEJx9QQNlttTnx3tJmeWeGFo-', // _MG_0205.jpg
+      '1aT4xGx2XpneQFJB50ONm9dqm62VeigGv', // _MG_0211.jpg
+      '12rNV1Ww65_Kq_auK2o0_X4u0WJgADq_4'  // _MG_0214-2.jpg
+    ]
   },
   {
     id: 'foret',
     layout: 'cinematic',
     eyebrow: 'Golden hour',
     title: 'Dans la forêt',
-    desc: 'La lumière du soir, les mariés seuls, la séance qui referme la journée.',
     ids: [
-      '1fTLlYUGfHyJ8nVmWHvVb3ARMvOT0uJkO',
-      '172TeHGs42W6stUuMwlq9UENfmqWj3-Eg',
-      '1Vz6wTQAUMRUFefTFQ1qePoWgZ31lczIn',
-      '1jyDXHhVGWQp9arwnb8uw0wznk9h-3iiw',
-      '1nZhTqDbSScGnLB_xkwZynxnS0pN0eTxz',
-      '1HREN3DlDTw81YEyR5_J2CqNyrS2pLBDo',
-      '1lPMEFVkc6YYMNJbirvanKEjJ7RNcS7S0',
-      '1I0xE725DE4uXIttEzJzFo4gm_YHoaLno',
-      '1ESZbFpPZTMwl8zKo_6NL4tLycwt4jMqV',
-      '10BaNSYfaDhVp8Gp3eU7RPyx9dVBQmLFm'
+      '1xQ4EiQFr4MkKM-EdPeV8mgszQsw8KS9t', // _MG_9677.jpg
+      '1UR8mtvL3TeXVDbRyymDM2p-rbb-3CWIC', // _MG_9690.jpg
+      '1dEMpCpeWqw-l9ZL0ieJS6-ywVBPcwmt4', // _MG_9697.jpg
+      '19ahCHhxtcHhqaaWLLpyPRKkhz_RabmUq', // _MG_9705.jpg
+      '18EopOfZRLh-BzZIxLWd243p7zpl3RLt2', // _MG_9711.jpg
+      '1WL3n-XPinBHM_9zTb5KFZXTVZIP7Da7g', // _MG_9733.jpg
+      '1ttQHAslz6wqKPTO_f3VZBzyfqbtPTLxI', // _MG_9740.jpg
+      '1utEpx7M3zHqGPpJVr2Jbjb8-5ahFklt6', // _MG_9744.jpg
+      '1tJulZFRbjbn8KdmDe83Mi8MaSuXypQXe', // _MG_9746.jpg
+      '1IPwMKKi6XzlA6TK4lkfHdyPztQbXdvmH', // _MG_9752.jpg
+      '11qqRlOxjUGw6P3c1zfMWIc-prUr5yB7S', // _MG_9757.jpg
+      '1Gose7lB24d-DlWMysajjd9E4mdgFxuOj', // _MG_9762.jpg
+      '172TeHGs42W6stUuMwlq9UENfmqWj3-Eg', // _MG_9769.jpg
+      '1Vz6wTQAUMRUFefTFQ1qePoWgZ31lczIn'  // _MG_9771.jpg
+    ],
+    mainIds: [
+      '1xQ4EiQFr4MkKM-EdPeV8mgszQsw8KS9t', // _MG_9677.jpg
+      '1UR8mtvL3TeXVDbRyymDM2p-rbb-3CWIC', // _MG_9690.jpg
+      '1dEMpCpeWqw-l9ZL0ieJS6-ywVBPcwmt4', // _MG_9697.jpg
+      '18EopOfZRLh-BzZIxLWd243p7zpl3RLt2', // _MG_9711.jpg
+      '1ttQHAslz6wqKPTO_f3VZBzyfqbtPTLxI', // _MG_9740.jpg
+      '11qqRlOxjUGw6P3c1zfMWIc-prUr5yB7S'  // _MG_9757.jpg
     ]
   }
 ];
@@ -105,19 +160,72 @@ const HERO_IMAGES = {
 const HERO_INTERVAL = 7500;
 const HERO_CROSSFADE = 1000;
 const LAYOUT_PATTERNS = {
-  editorial: [
-    'e-feature', 'e-secondary', 'e-secondary', 'e-secondary', 'e-secondary',
-    'e-secondary', 'e-medium', 'e-medium', 'e-secondary', 'e-wide'
-  ],
-  reportage: [
-    'r-large', 'r-medium', 'r-medium', 'r-wide', 'r-tall', 'r-medium',
-    'r-medium', 'r-large', 'r-medium', 'r-medium', 'r-wide', 'r-tall'
-  ],
-  cinematic: [
-    'c-hero', 'c-half', 'c-half', 'c-wide', 'c-side',
-    'c-half', 'c-half', 'c-hero', 'c-half', 'c-half'
-  ]
+  editorial: {
+    main: ['e-main-feature', 'e-main-portrait', 'e-main-wide'],
+    secondary: ['e-small', 'e-small', 'e-medium', 'e-small', 'e-medium']
+  },
+  reportage: {
+    main: ['r-main-wide', 'r-main-large', 'r-main-tall'],
+    secondary: ['r-medium', 'r-small', 'r-medium', 'r-large']
+  },
+  cinematic: {
+    main: ['c-main-hero', 'c-main-wide', 'c-main-large'],
+    secondary: ['c-half', 'c-side', 'c-half', 'c-wide']
+  }
 };
+
+function uniqueIds(ids = []){
+  return [...new Set(ids.filter(Boolean))];
+}
+
+// Keeps priority photos spread throughout a section without duplicating them.
+function distributePriorityIds(ids, priorityIds){
+  const prioritySet = new Set(priorityIds);
+  const priorities = ids.filter(id => prioritySet.has(id));
+  const secondary = ids.filter(id => !prioritySet.has(id));
+  if (!priorities.length || !secondary.length) return ids;
+
+  const distributed = [];
+  let secondaryIndex = 0;
+
+  for (let slot = 0; slot <= priorities.length; slot++) {
+    const remainingSecondary = secondary.length - secondaryIndex;
+    const remainingSlots = priorities.length - slot + 1;
+    const take = Math.ceil(remainingSecondary / remainingSlots);
+    distributed.push(...secondary.slice(secondaryIndex, secondaryIndex + take));
+    secondaryIndex += take;
+    if (slot < priorities.length) distributed.push(priorities[slot]);
+  }
+
+  return distributed;
+}
+
+function prepareGallery(section){
+  const ids = uniqueIds(section.ids);
+  const idSet = new Set(ids);
+  const declaredMainIds = uniqueIds(section.mainIds);
+  const declaredMobileMainIds = section.mobileMainIds?.length
+    ? uniqueIds(section.mobileMainIds)
+    : declaredMainIds;
+  const mainIds = declaredMainIds.filter(id => idSet.has(id));
+  const mobileMainIds = declaredMobileMainIds.filter(id => idSet.has(id));
+  const invalidPriorityIds = [...declaredMainIds, ...declaredMobileMainIds]
+    .filter(id => !idSet.has(id));
+
+  if (ids.length !== (section.ids || []).length) {
+    console.warn(`[Galerie ${section.id}] Un ID vide ou dupliqué dans ids a été ignoré.`);
+  }
+  if (invalidPriorityIds.length) {
+    console.warn(`[Galerie ${section.id}] Priorités absentes de ids :`, uniqueIds(invalidPriorityIds));
+  }
+
+  const priorityIds = uniqueIds([...mainIds, ...mobileMainIds]);
+  return {
+    ids: distributePriorityIds(ids, priorityIds),
+    mainIds: new Set(mainIds),
+    mobileMainIds: new Set(mobileMainIds)
+  };
+}
 
 function thumb(id, w){ return `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`; }
 
@@ -240,6 +348,9 @@ SECTIONS.forEach((section) => {
   const section_el = document.createElement('section');
   const layout = LAYOUT_PATTERNS[section.layout] ? section.layout : 'reportage';
   const layoutPattern = LAYOUT_PATTERNS[layout];
+  const gallery = prepareGallery(section);
+  const patternIndexes = { main: 0, secondary: 0 };
+  let mobileMainIndex = 0;
   section_el.className = `moment layout-${layout}`;
   section_el.id = section.id;
 
@@ -251,19 +362,31 @@ SECTIONS.forEach((section) => {
   head.innerHTML = `
     <p class="eyebrow">${section.eyebrow}</p>
     <h2>${section.title}</h2>
-    <span class="moment-count">${section.ids.length ? `${section.ids.length} photos` : 'Photos à venir'}</span>
+    <span class="moment-count">${gallery.ids.length ? `${gallery.ids.length} photos` : 'Photos à venir'}</span>
   `;
   section_inner.appendChild(head);
 
   const grid = document.createElement('div');
   grid.className = 'grid';
 
-  section.ids.forEach((id, i) => {
+  gallery.ids.forEach((id) => {
     const globalIndex = allImages.length;
     allImages.push({ id, alt: section.title });
 
     const fig = document.createElement('figure');
-    fig.className = layoutPattern[i % layoutPattern.length];
+    const isMain = gallery.mainIds.has(id);
+    const isMobileMain = gallery.mobileMainIds.has(id);
+    const isMobileFeature = isMobileMain && mobileMainIndex === 0;
+    const role = isMain ? 'main' : 'secondary';
+    const rolePattern = layoutPattern[role];
+    if (isMobileMain) mobileMainIndex++;
+    fig.className = rolePattern[patternIndexes[role] % rolePattern.length];
+    fig.classList.toggle('is-main', isMain);
+    fig.classList.toggle('is-mobile-main', isMobileMain);
+    fig.classList.toggle('is-mobile-feature', isMobileFeature);
+    fig.dataset.layout = layout;
+    fig.dataset.photoId = id;
+    patternIndexes[role]++;
     fig.tabIndex = 0;
     fig.dataset.index = globalIndex;
 
@@ -272,7 +395,24 @@ SECTIONS.forEach((section) => {
     img.decoding = 'async';
     img.alt = section.title;
 
-    const markImageLoaded = () => img.classList.add('is-loaded');
+    const markImageLoaded = () => {
+      if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+        const ratio = img.naturalWidth / img.naturalHeight;
+        const format = ratio < 0.72
+          ? 'tall'
+          : ratio < 0.92
+            ? 'portrait'
+            : ratio <= 1.12
+              ? 'square'
+              : ratio < 1.75
+                ? 'landscape'
+                : 'panoramic';
+
+        fig.style.setProperty('--photo-ratio', `${img.naturalWidth} / ${img.naturalHeight}`);
+        fig.classList.add('has-natural-ratio', `photo-${format}`);
+      }
+      img.classList.add('is-loaded');
+    };
     const markImageError = () => img.classList.add('is-loaded', 'is-error');
     img.addEventListener('load', markImageLoaded, { once:true });
     img.addEventListener('error', markImageError, { once:true });
@@ -296,6 +436,9 @@ SECTIONS.forEach((section) => {
   a.innerHTML = `<span class="dot"></span><span class="label">${section.title}</span>`;
   sideNav.appendChild(a);
 });
+
+const galleryTotal = document.getElementById('gallery-total');
+if (galleryTotal) galleryTotal.textContent = allImages.length;
 
 const thanksLink = document.createElement('a');
 thanksLink.href = '#remerciements';
@@ -362,6 +505,32 @@ const heroObserver = new IntersectionObserver(([entry]) => {
   sideNav.classList.toggle('is-visible', heroMostlyLeft);
 }, { threshold: [0, 0.12] });
 heroObserver.observe(hero);
+
+// ---------- Discreet back-to-top control ----------
+const backToTop = document.getElementById('back-to-top');
+let backToTopFrame = 0;
+
+function updateBackToTop(){
+  const isVisible = window.scrollY > Math.max(640, window.innerHeight * 0.85);
+  backToTop.classList.toggle('is-visible', isVisible);
+  backToTop.setAttribute('aria-hidden', String(!isVisible));
+}
+
+window.addEventListener('scroll', () => {
+  if (backToTopFrame) return;
+  backToTopFrame = requestAnimationFrame(() => {
+    updateBackToTop();
+    backToTopFrame = 0;
+  });
+}, { passive:true });
+window.addEventListener('resize', updateBackToTop);
+backToTop.addEventListener('click', () => {
+  window.scrollTo({
+    top:0,
+    behavior:reducedMotionQuery.matches ? 'auto' : 'smooth'
+  });
+});
+updateBackToTop();
 
 // ---------- Lightbox ----------
 const lightbox = document.getElementById('lightbox');
