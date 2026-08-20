@@ -437,9 +437,6 @@ SECTIONS.forEach((section) => {
   sideNav.appendChild(a);
 });
 
-const galleryTotal = document.getElementById('gallery-total');
-if (galleryTotal) galleryTotal.textContent = allImages.length;
-
 const thanksLink = document.createElement('a');
 thanksLink.href = '#remerciements';
 thanksLink.innerHTML = '<span class="dot"></span><span class="label">Remerciements &amp; liens</span>';
