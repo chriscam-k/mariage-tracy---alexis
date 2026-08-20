@@ -8,6 +8,7 @@
 const SECTIONS = [
   {
     id: 'preparatifs',
+    layout: 'editorial',
     eyebrow: 'Matin',
     title: 'Les préparatifs',
     desc: "Avant que tout commence.",
@@ -26,6 +27,7 @@ const SECTIONS = [
   },
   {
     id: 'salle',
+    layout: 'reportage',
     eyebrow: 'Midi',
     title: 'Devant la salle',
     desc: "L'arrivée, les premiers sourires, l'attente joyeuse avant la cérémonie.",
@@ -40,6 +42,7 @@ const SECTIONS = [
   },
   {
     id: 'ceremonie',
+    layout: 'reportage',
     eyebrow: 'Après-midi',
     title: 'La cérémonie',
     desc: "Les vœux, les alliances, l'instant où tout devient officiel.",
@@ -60,6 +63,7 @@ const SECTIONS = [
   },
   {
     id: 'couple',
+    layout: 'cinematic',
     eyebrow: 'À deux',
     title: 'Le couple',
     desc: 'Le temps suspendu, juste pour eux.',
@@ -68,6 +72,7 @@ const SECTIONS = [
   },
   {
     id: 'foret',
+    layout: 'cinematic',
     eyebrow: 'Golden hour',
     title: 'Dans la forêt',
     desc: 'La lumière du soir, les mariés seuls, la séance qui referme la journée.',
@@ -99,7 +104,20 @@ const HERO_IMAGES = {
 };
 const HERO_INTERVAL = 7500;
 const HERO_CROSSFADE = 1000;
-const SPAN_PATTERN = ['g-a','g-c','g-d','g-b','g-h','g-e','g-c','g-i','g-f','g-g','g-c','g-d'];
+const LAYOUT_PATTERNS = {
+  editorial: [
+    'e-feature', 'e-secondary', 'e-secondary', 'e-secondary', 'e-secondary',
+    'e-secondary', 'e-medium', 'e-medium', 'e-secondary', 'e-wide'
+  ],
+  reportage: [
+    'r-large', 'r-medium', 'r-medium', 'r-wide', 'r-tall', 'r-medium',
+    'r-medium', 'r-large', 'r-medium', 'r-medium', 'r-wide', 'r-tall'
+  ],
+  cinematic: [
+    'c-hero', 'c-half', 'c-half', 'c-wide', 'c-side',
+    'c-half', 'c-half', 'c-hero', 'c-half', 'c-half'
+  ]
+};
 
 function thumb(id, w){ return `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`; }
 
@@ -220,7 +238,9 @@ const allImages = []; // {id, alt}
 
 SECTIONS.forEach((section) => {
   const section_el = document.createElement('section');
-  section_el.className = 'moment';
+  const layout = LAYOUT_PATTERNS[section.layout] ? section.layout : 'reportage';
+  const layoutPattern = LAYOUT_PATTERNS[layout];
+  section_el.className = `moment layout-${layout}`;
   section_el.id = section.id;
 
   const section_inner = document.createElement('div');
@@ -231,7 +251,6 @@ SECTIONS.forEach((section) => {
   head.innerHTML = `
     <p class="eyebrow">${section.eyebrow}</p>
     <h2>${section.title}</h2>
-    <p>${section.desc}</p>
     <span class="moment-count">${section.ids.length ? `${section.ids.length} photos` : 'Photos à venir'}</span>
   `;
   section_inner.appendChild(head);
@@ -244,7 +263,7 @@ SECTIONS.forEach((section) => {
     allImages.push({ id, alt: section.title });
 
     const fig = document.createElement('figure');
-    fig.className = SPAN_PATTERN[i % SPAN_PATTERN.length];
+    fig.className = layoutPattern[i % layoutPattern.length];
     fig.tabIndex = 0;
     fig.dataset.index = globalIndex;
 
