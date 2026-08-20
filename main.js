@@ -86,7 +86,19 @@ const SECTIONS = [
   }
 ];
 
-const HERO_ID = '1fTLlYUGfHyJ8nVmWHvVb3ARMvOT0uJkO';
+const HERO_IMAGES = {
+  desktop: [
+    '1LiW-IBZ6EVaALI-JFyT49R3U8IHz0ooY', // _MG_0207.jpg
+    '1z0UK5sGsGRzgtwbUYHscD6Xos5ejJj67', // _MG_9714.jpg
+  ],
+  mobile: [
+    '1BC6x3qEOv8uy4LO3UFJXgGwtbEd615x4', // _MG_0324.jpg
+    '1En-K6Lrs8aG9xcDa3yM7sphV6aeVwJxt', // _MG_0310.jpg
+    '1n-wgGshRZwDVo2YUmBY-1jd3SHE8dQr8', // _MG_9610.jpg
+  ]
+};
+const HERO_INTERVAL = 7500;
+const HERO_CROSSFADE = 1000;
 const SPAN_PATTERN = ['g-a','g-c','g-d','g-b','g-h','g-e','g-c','g-i','g-f','g-g','g-c','g-d'];
 
 function thumb(id, w){ return `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`; }
@@ -96,8 +108,16 @@ const loaderStartedAt = performance.now();
 const loaderBar = document.getElementById('loader-bar');
 const loaderProgress = document.getElementById('loader-progress');
 const heroImg = document.getElementById('hero-img');
+const heroSlides = [heroImg, document.getElementById('hero-img-next')];
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const mobileHeroQuery = window.matchMedia('(max-width: 760px) and (orientation: portrait)');
+const heroIds = mobileHeroQuery.matches ? HERO_IMAGES.mobile : HERO_IMAGES.desktop;
+const heroWidth = mobileHeroQuery.matches ? 1200 : 2000;
 let displayedProgress = 0;
 let loaderFinished = false;
+let heroIndex = 0;
+let activeHeroSlide = 0;
+let heroSwapTimer;
 
 function animateLoader(now){
   if (loaderFinished) return;
@@ -123,15 +143,73 @@ function finishLoader(){
   loaderBar.style.transition = 'transform .38s cubic-bezier(.2,.7,.2,1)';
   loaderBar.style.transform = 'scaleX(1)';
   loaderProgress.textContent = '100%';
-  setTimeout(() => document.body.classList.add('page-ready'), 280);
+  setTimeout(() => {
+    document.body.classList.add('page-ready');
+    startHeroSlideshow();
+  }, 280);
+}
+
+function preloadHeroImage(src){
+  return new Promise(resolve => {
+    const image = new Image();
+    image.onload = () => {
+      const decoded = image.decode ? image.decode() : Promise.resolve();
+      decoded.catch(() => {}).then(() => resolve(true));
+    };
+    image.onerror = () => resolve(false);
+    image.src = src;
+  });
+}
+
+async function prepareNextHero(displayStartedAt){
+  if (reducedMotionQuery.matches || heroIds.length < 2) return;
+
+  const nextIndex = (heroIndex + 1) % heroIds.length;
+  const nextSrc = thumb(heroIds[nextIndex], heroWidth);
+  const loaded = await preloadHeroImage(nextSrc);
+
+  if (reducedMotionQuery.matches) return;
+
+  if (!loaded) {
+    heroSwapTimer = setTimeout(() => prepareNextHero(performance.now()), HERO_INTERVAL);
+    return;
+  }
+
+  const inactiveSlideIndex = 1 - activeHeroSlide;
+  const inactiveSlide = heroSlides[inactiveSlideIndex];
+  inactiveSlide.src = nextSrc;
+
+  const elapsed = performance.now() - displayStartedAt;
+  heroSwapTimer = setTimeout(() => {
+    if (reducedMotionQuery.matches) return;
+
+    const outgoingSlide = heroSlides[activeHeroSlide];
+    inactiveSlide.classList.add('is-visible', 'is-zooming');
+    outgoingSlide.classList.remove('is-visible');
+
+    heroIndex = nextIndex;
+    activeHeroSlide = inactiveSlideIndex;
+    const nextDisplayStartedAt = performance.now();
+
+    setTimeout(() => {
+      outgoingSlide.classList.remove('is-zooming');
+      prepareNextHero(nextDisplayStartedAt);
+    }, HERO_CROSSFADE);
+  }, Math.max(0, HERO_INTERVAL - elapsed));
+}
+
+function startHeroSlideshow(){
+  if (reducedMotionQuery.matches || heroIds.length < 2) return;
+  firstHeroReady.then(() => prepareNextHero(performance.now()));
 }
 
 requestAnimationFrame(animateLoader);
-heroImg.src = thumb(HERO_ID, 2000);
+heroImg.src = thumb(heroIds[0], heroWidth);
 
 const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
 const minimumIntro = new Promise(resolve => setTimeout(resolve, 900));
-const criticalAssets = Promise.all([assetReady(heroImg), fontsReady, minimumIntro]);
+const firstHeroReady = assetReady(heroImg);
+const criticalAssets = Promise.all([firstHeroReady, fontsReady, minimumIntro]);
 const safetyTimeout = new Promise(resolve => setTimeout(resolve, 4500));
 Promise.race([criticalAssets, safetyTimeout]).then(finishLoader);
 
@@ -274,7 +352,6 @@ let currentIndex = 0;
 let imageRequestId = 0;
 let imageSwapTimer;
 let lightboxCloseTimer;
-const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function showImage(index, opening = false){
   currentIndex = (index + allImages.length) % allImages.length;
